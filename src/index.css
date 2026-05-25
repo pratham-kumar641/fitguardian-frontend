@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #ffffff;
+    --color-surface: #f8f9fa;
+    --color-text-main: #000000;
+    --color-text-muted: #166534;
+    --color-border: rgba(0, 0, 0, 0.2);
+    --color-glass-bg: #ffffff;
+    --color-glass-border: rgba(0, 0, 0, 0.1);
+    --color-neon-green: 22 163 74;
+    --color-electric-cyan: 22 163 74;
+  }
+
+  .dark {
+    --color-bg: #0a0a0a;
+    --color-surface: #111111;
+    --color-text-main: #ffffff; /* restored to pure white for headings */
+    --color-text-muted: #9ca3af; /* gray-400 */
+    --color-border: rgba(255, 255, 255, 0.1);
+    --color-glass-bg: rgba(255, 255, 255, 0.05); /* white/5 */
+    --color-glass-border: rgba(255, 255, 255, 0.1); /* white/10 */
+    --color-neon-green: 57 255 20;
+    --color-electric-cyan: 0 245 255;
+  }
+
+  body {
+    /* original was text-gray-200. in light mode, use a dark gray. in dark mode, use gray-200 */
+    @apply bg-background text-gray-800 dark:text-gray-200 antialiased font-sans transition-colors duration-300;
+  }
+}
+
+@layer components {
+  /* Frosted Glass Utilities */
+  .glass-card {
+    @apply bg-glassBg backdrop-blur-md border border-glassBorder shadow-lg rounded-2xl;
+  }
+  
+  .glass-button {
+    @apply relative overflow-hidden bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 backdrop-blur-md text-textMain border border-black/20 dark:border-white/20 rounded-xl transition-all duration-300;
+  }
+
+  .neon-button {
+    @apply bg-neonGreen/10 text-neonGreen hover:bg-neonGreen/20 hover:shadow-[0_0_15px_rgba(57,255,20,0.5)] border border-neonGreen/50 rounded-xl transition-all duration-300 font-semibold py-2 px-4;
+  }
+
+  .cyan-button {
+    @apply bg-electricCyan/10 text-electricCyan hover:bg-electricCyan/20 hover:shadow-[0_0_15px_rgba(0,245,255,0.5)] border border-electricCyan/50 rounded-xl transition-all duration-300 font-semibold py-2 px-4;
+  }
+
+  .input-field {
+    @apply w-full bg-surface border border-black/20 dark:border-white/20 rounded-xl px-4 py-2 text-textMain focus:outline-none focus:border-neonGreen focus:ring-1 focus:ring-neonGreen transition-colors;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-electric-cyan);
+}
