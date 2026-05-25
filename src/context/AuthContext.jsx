@@ -1,6 +1,8 @@
 import { useState, useEffect, createContext, useContext } from 'react';
+import axios from 'axios';
 import api from '../services/api';
 
+const API_URL = import.meta.env.VITE_API_URL;
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -26,7 +28,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (email, password) => {
-        const res = await api.post('/auth/login', { email, password });
+        const res = await axios.post(`${API_URL}/auth/login`, { email, password });
         localStorage.setItem('token', res.data.token);
         setUser(res.data);
     };
