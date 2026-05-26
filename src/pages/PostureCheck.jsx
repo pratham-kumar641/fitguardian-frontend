@@ -173,8 +173,9 @@ const PostureCheck = () => {
                         const net = await window.posenet.load({
                             architecture: 'MobileNetV1',
                             outputStride: 16,
-                            inputResolution: { width: 320, height: 240 },
-                            multiplier: 0.75
+                            inputResolution: { width: 640, height: 480 },
+                            multiplier: 1.0,
+                            quantBytes: 2
                         });
                         startTrackingLoop(net);
                     } catch (err) {
